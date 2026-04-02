@@ -1,269 +1,521 @@
 <!DOCTYPE html>
-
 <html class="dark" lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>LTUC school of creative media at Schools</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&amp;family=Manrope:wght@400;500;600&amp;family=Space+Grotesk:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Manrope:wght@400;500;600&family=Space+Grotesk:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        /* --- CSS Variables (Extracted from Tailwind Config) --- */
+        :root {
+            --background: #131313;
+            --surface: #000000;
+            --surface-container-lowest: #0e0e0e;
+            --surface-container-low: #8F9092; 
+            --surface-container-highest: #353535;
+            --surface-variant: #353535;
+            --on-surface-variant: #e7bdb8;
+            --primary-container: #e31b23;
+            --on-primary-container: #fff9f8;
+            --outline-variant-10: rgba(93, 63, 60, 0.1); /* outline-variant at 10% opacity */
+            
+            --font-headline: 'Epilogue', sans-serif;
+            --font-body: 'Manrope', sans-serif;
+        }
+
+        /* --- Global Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background-color: #131313;
+            background-color: var(--background);
+            color: #e2e2e2;
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        ::selection {
+            background-color: var(--primary-container);
+            color: var(--on-primary-container);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1536px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- Typography --- */
+        .text-primary-container { color: var(--primary-container); }
+        .font-headline { font-family: var(--font-headline); }
+        .font-black { font-weight: 900; }
+        .font-bold { font-weight: 700; }
+        .tracking-tighter { letter-spacing: -0.05em; }
+        .tracking-tight { letter-spacing: -0.025em; }
+        
+        /* --- Navigation --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            background-color: rgba(19, 19, 19, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            max-width: 1536px;
+            margin: 0 auto;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
             color: #e2e2e2;
         }
-    </style>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "on-tertiary": "#003352",
-                        "on-secondary-container": "#ff998f",
-                        "on-error": "#690005",
-                        "surface-variant": "#353535",
-                        "on-error-container": "#ffdad6",
-                        "on-surface-variant": "#e7bdb8",
-                        "surface-tint": "#ffb4ac",
-                        "inverse-primary": "#c00015",
-                        "tertiary-fixed": "#cde5ff",
-                        "on-surface": "#e2e2e2",
-                        "tertiary": "#94ccff",
-                        "secondary-fixed": "#ffdad6",
-                        "outline": "#ae8883",
-                        "surface-container-lowest": "#0e0e0e",
-                        "surface-bright": "#393939",
-                        "primary-fixed": "#ffdad6",
-                        "error-container": "#93000a",
-                        "surface-container": "#1f1f1f",
-                        "on-secondary": "#690006",
-                        "inverse-on-surface": "#303030",
-                        "secondary-container": "#8b1918",
-                        "primary-fixed-dim": "#ffb4ac",
-                        "outline-variant": "#5d3f3c",
-                        "on-tertiary-container": "#f9faff",
-                        "primary": "#ffb4ac",
-                        "surface": "#131313",
-                        "surface-container-highest": "#353535",
-                        "surface-container-high": "#2a2a2a",
-                        "error": "#ffb4ab",
-                        "surface-dim": "#131313",
-                        "on-secondary-fixed": "#410002",
-                        "surface-container-low": "#1b1b1b",
-                        "on-primary-fixed": "#410002",
-                        "secondary-fixed-dim": "#ffb4ac",
-                        "background": "#131313",
-                        "on-secondary-fixed-variant": "#8b1918",
-                        "on-primary": "#690006",
-                        "secondary": "#ffb4ac",
-                        "on-primary-container": "#fff9f8",
-                        "on-tertiary-fixed": "#001d32",
-                        "on-tertiary-fixed-variant": "#004b74",
-                        "inverse-surface": "#e2e2e2",
-                        "on-background": "#e2e2e2",
-                        "tertiary-container": "#0079b9",
-                        "tertiary-fixed-dim": "#94ccff",
-                        "primary-container": "#e31b23",
-                        "on-primary-fixed-variant": "#93000d"
-                    },
-                    fontFamily: {
-                        "headline": ["Epilogue"],
-                        "body": ["Manrope"],
-                        "label": ["Space Grotesk"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                },
-            },
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+            overflow: hidden;
+            background-color: var(--background);
         }
-    </script>
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, var(--background), transparent, var(--background));
+            z-index: 10;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 56rem;
+            margin-top: 5rem;
+        }
+
+        .hero-title {
+            font-size: 3.75rem;
+            line-height: 1;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero-desc {
+            font-size: 1.25rem;
+            color: var(--on-surface-variant);
+            max-width: 42rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.625;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 5rem;
+            
+        }
+
+        /* --- Bachelor's Programs Section --- */
+        .bachelors-section {
+            padding: 6rem 0;
+            background-color: var(--surface);
+        }
+
+        .section-header {
+            max-width: 42rem;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bachelors-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .program-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            background-color: var(--surface-container-low);
+            transition: transform 0.5s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-0.5rem);
+        }
+
+        .program-img-wrapper {
+            overflow: hidden;
+        }
+
+        .program-img-wrapper.square { aspect-ratio: 1 / 1; }
+        .program-img-wrapper.portrait { aspect-ratio: 4 / 5; }
+
+        .program-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease, filter 0.7s ease;
+        }
+
+        .program-card:hover .program-img {
+            transform: scale(1.05);
+        }
+
+        .program-info {
+            padding: 2.5rem;
+        }
+
+        .program-info h3 {
+            font-size: 1.875rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- Diploma Programs Section --- */
+        .diplomas-section {
+            padding: 6rem 0;
+            background-color: var(--surface-container-low);
+        }
+
+        .diplomas-title-wrapper {
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .diplomas-title {
+            font-size: 2.25rem;
+            margin-top: 1rem;
+            text-transform: uppercase;
+        }
+
+        .diplomas-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .diploma-card {
+            background-color: var(--surface-container-highest);
+            border-radius: 0.75rem;
+            transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 400px;
+        }
+
+        .diploma-img-wrap {
+            background-color: var(--surface);
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-container);
+            transition: color 0.3s ease;
+            overflow: hidden;
+            width: 100%;
+            aspect-ratio: 1; /* Keep it perfectly circular/square depending on content */
+        }
+
+        .diploma-card:hover .diploma-img-wrap {
+            color: #ffffff;
+        }
+
+        .diploma-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .diploma-info {
+            padding: 2rem;
+        }
+
+        .diploma-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .diploma-card:hover .diploma-info h3 {
+            color: var(--on-primary-container);
+        }
+
+        /* --- CTA Section --- */
+        .cta-section {
+            padding: 6rem 0;
+            background-color: var(--surface);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            right: -5rem;
+            top: 0;
+            width: 24rem;
+            height: 24rem;
+            background-color: rgba(227, 27, 35, 0.2); /* var(--primary-container) with opacity */
+            border-radius: 50%;
+            filter: blur(120px);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .cta-box {
+            max-width: 64rem;
+            margin: 0 auto;
+            background-color: var(--surface-container-lowest);
+            border: 1px solid var(--outline-variant-10);
+            padding: 3rem;
+            border-radius: 1.5rem;
+            text-align: center;
+        }
+
+        .cta-box h2 {
+            font-size: 2.25rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+
+        .cta-box p {
+            font-size: 1.25rem;
+            color: var(--on-surface-variant);
+            margin-bottom: 3rem;
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            color: var(--on-primary-container);
+            padding: 1.5rem 3rem;
+            border-radius: 9999px;
+            font-family: var(--font-headline);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 1.125rem;
+            transition: transform 0.3s ease;
+            border: 1px solid transparent;
+            border-color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            background-color: #e31b23;
+        }
+
+        /* --- Media Queries for Responsiveness --- */
+        @media (min-width: 768px) {
+            .hero-content { margin-top: 0; }
+            .hero-title { font-size: 6rem; }
+            .hero-desc { font-size: 1.5rem; }
+            
+            .bachelors-section { padding: 8rem 0; }
+            .section-title { font-size: 3rem; }
+            
+            .bachelors-grid { grid-template-columns: repeat(12, 1fr); }
+            .program-1 { grid-column: span 7; }
+            .program-2 { grid-column: span 5; margin-top: 6rem; }
+            
+            .diplomas-section { padding: 8rem 0; }
+            .diplomas-title { font-size: 3.75rem; }
+            .diplomas-grid { grid-template-columns: repeat(4, 1fr); }
+
+            .cta-section { padding: 10rem 0; }
+            .cta-box { padding: 6rem; }
+            .cta-box h2 { font-size: 4.5rem; }
+        }
+    </style>
 </head>
 
-<body class="font-body selection:bg-primary-container selection:text-on-primary-container">
-    <!-- TopNavBar -->
-    <nav class="fixed top-0 w-full z-50 bg-[#131313]/60 backdrop-blur-md">
-        <div class="flex justify-between items-center px-8 py-6 max-w-screen-2xl mx-auto">
-            <div class="text-2xl font-black tracking-tighter text-[#e2e2e2] font-headline">Vanguard Arts</div>
-
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-brand font-black tracking-tighter font-headline">Vanguard Arts</div>
         </div>
     </nav>
+    
     <main>
-        <!-- Hero Section -->
-        <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-background">
-            <div class="absolute inset-0 z-0 opacity-40">
-                <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background z-10"></div>
-                <img class="w-full h-full object-cover"
-                    data-alt="cinematic close-up of a professional film camera in a dark studio setting with red rim lighting and atmosphere smoke"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8JJHplF9sz4RxryVL6Znj7SuiTuBJR5HT5thOl60ra7nbddnaz4Ob-JMoWsKaerJx1fST8Q0tvLF6d-RkBPObz1HnECI_mfTbQJKzqTOjqF-A5lvN4v81iGT-47zGw2oDgTOgt64YPymCsVuoZ7BwbN8pGpugWTtrlB6jpDneyoIOCXg9jAsgh5lTH81tLMEk5Hja9-pfNGD879GoQObOHO8y8HuARmv8NMGG-G13DI-eMt5xU5yuv-AgVGrgqEgDl4W6OF33ZQgb" />
+        <section class="hero">
+            <div class="hero-bg">
+                <div class="hero-gradient"></div>
+                <img class="hero-img" data-alt="cinematic close-up of a professional film camera in a dark studio setting with red rim lighting and atmosphere smoke" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8JJHplF9sz4RxryVL6Znj7SuiTuBJR5HT5thOl60ra7nbddnaz4Ob-JMoWsKaerJx1fST8Q0tvLF6d-RkBPObz1HnECI_mfTbQJKzqTOjqF-A5lvN4v81iGT-47zGw2oDgTOgt64YPymCsVuoZ7BwbN8pGpugWTtrlB6jpDneyoIOCXg9jAsgh5lTH81tLMEk5Hja9-pfNGD879GoQObOHO8y8HuARmv8NMGG-G13DI-eMt5xU5yuv-AgVGrgqEgDl4W6OF33ZQgb" />
             </div>
-            <div class="container mx-auto px-8 z-10 mt-20 md:mt-0">
-                <div class="max-w-4xl">
-                    
-                    <h1 class="text-6xl md:text-8xl font-headline font-black tracking-tighter leading-none mb-8">
-                        THE ART OF <br />
-                        <span class="text-primary-container">VISUAL STORY.</span>
+            <div class="container hero-content">
+                <div>
+                    <h1 class="hero-title font-headline font-black tracking-tighter">
+                        <span class="text-primary-container">MASTER<br>YOUR CREATIVITY</span>
                     </h1>
-                    <p class="text-xl md:text-2xl text-on-surface-variant font-body max-w-2xl mb-10 leading-relaxed">
+                    <p class="hero-desc">
                         Master the craft of cinematography, sound design, and digital media at the world's leading
                         creative institute. Your legacy begins here.
                     </p>
-
                 </div>
             </div>
-            <!-- Abstract Scroll Indicator -->
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
-                <div class="w-[1px] h-20 bg-gradient-to-b from-primary-container to-transparent"></div>
+            <div class="scroll-indicator">
+                <div class="scroll-line"></div>
             </div>
         </section>
-        <!-- Bachelor's Programs - Asymmetric Layout -->
-        <section class="py-24 md:py-32 bg-surface">
-            <div class="container mx-auto px-8">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-                    <div class="max-w-2xl">
-                        <h2 class="text-4xl md:text-5xl font-headline font-black mb-6 tracking-tight">BACHELOR DEGREES
-                        </h2>
-                    </div>
+
+        <section class="bachelors-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title font-headline font-black tracking-tight uppercase">Bachelor's Programs</h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-                    <!-- Program 1 -->
-                    <div
-                        class="md:col-span-7 group relative overflow-hidden rounded-xl bg-surface-container-low transition-all duration-500 hover:-translate-y-2">
-                        <div class="aspect-[16/16] overflow-hidden">
-                            <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                                data-alt="high contrast black and white photograph of a photographer capturing an urban scene with dramatic lighting"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAh5ikLJ0X_FTlf2oHk9bUkRn9-hCVfNkkHEZh-ljoJp2TGTE579mg2ikVNAHu7auxLVeHRyusRlA6WY7KpY-yoKKisyXzqZa2MpqgKqYd_IJBl8oKFF4EfuRA3hVcKRkRbc5hQ1KPFvxpsOIz1elUZDwL62lWR0QKEnpqutw9pi6nYKo6H40GbJ-uc7tvjYZOABW534W_OUnnQiA-dr63KLIPfxfeeISPQQpWuokYD5FR13hv7KgQvgRHySvq71F3NAV0O3-bEAF4" />
+                <div class="bachelors-grid">
+                    <div class="program-card program-1">
+                        <div class="program-img-wrapper square">
+                            <img class="program-img" data-alt="photograph of a photographer capturing an urban scene with dramatic lighting" src="film-making.png" />
                         </div>
-                        <div class="p-10">
-                            <h3 class="text-3xl font-headline font-bold mb-4">Bachelor of Film Production</h3>
-                            
+                        <div class="program-info">
+                            <h3 class="font-headline font-bold">Bachelor of Digital Filmmaking</h3>
                         </div>
                     </div>
-                    <!-- Program 2 -->
-                    <div
-                        class="md:col-span-5 md:mt-24 group relative overflow-hidden rounded-xl bg-surface-container-low transition-all duration-500 hover:-translate-y-2">
-                        <div class="aspect-[4/5] overflow-hidden">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-                                data-alt="close-up of a high-end music production studio console with glowing red and orange lights in a dark room"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPgyyXpJ3JSaG_VCVNV9ToC8y9mtUEB71dFlc5lUu0rU4rC3ulu1iyY_ZGqDbL_YaSmf57_tQYcgwhxGW4N1vXuPfa1i2_C6FDKna2pthDod_MZl3ALrPlJcJzDNLV5xS_nSwGjU6SpjNs_MU597cOduupXyvJKeDP_RCIgEILmBNfsUpxBfbK0gujC5saOBzanTGFV6EQNlhCHW0Kedlp9mLvs-Cwefgrhv9GAuK6IDAqMRf4lNWl2bB2lKUGx9u5cA469ykkMdOI" />
+                    <div class="program-card program-2">
+                        <div class="program-img-wrapper portrait">
+                            <img class="program-img" data-alt="close-up of a high-end music production studio console with glowing red and orange lights in a dark room" src="media-ba.JPG" />
                         </div>
-                        <div class="p-10">
-                            <h3 class="text-3xl font-headline font-bold mb-4">Bachelor of Audio Arts</h3>
+                        <div class="program-info">
+                            <h3 class="font-headline font-bold">Bachelor of Digital Media Design</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
-        <!-- Diploma Programs - Bento Grid -->
-        <section class="py-24 md:py-32 bg-surface-container-low">
-            <div class="container mx-auto px-8">
-                <div class="mb-20 text-center">
-                    <h2 class="text-4xl md:text-6xl font-headline font-black mt-4 tracking-tighter">DIPLOMA PROGRAMS
-                    </h2>
+        <section class="diplomas-section">
+            <div class="container">
+                <div class="diplomas-title-wrapper">
+                    <h2 class="diplomas-title font-headline font-black tracking-tighter">DIPLOMA PROGRAMS</h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <!-- Diploma 1 -->
-                    <div
-                        class="group bg-surface-container-highest p-8 rounded-xl duration-500 flex flex-col justify-between min-h-[400px]">
-                        <div
-                            class="w-16 h-16 bg-surface rounded-full flex items-center justify-center text-primary-container group-hover:text-white transition-colors">
-                            <span class="material-symbols-outlined text-3xl">animation</span>
+                <div class="diplomas-grid">
+                    <div class="diploma-card">
+                        <div class="diploma-img-wrap">
+                            <img class="diploma-img" data-alt="close-up of a high-end music production studio console with glowing red and orange lights in a dark room" src="audio.png" />
                         </div>
-                        <div>
-                            <h3 class="text-2xl font-headline font-bold mb-2 group-hover:text-on-primary-container">3D
-                                Animation</h3>
-                            <p
-                                class="text-on-surface-variant group-hover:text-white/80 font-body text-sm leading-relaxed">
-                                Master character design and VFX in an intensive 12-month program.</p>
+                        <div class="diploma-info">
+                            <h3 class="font-headline font-bold">Audio Production</h3>
                         </div>
                     </div>
-                    <!-- Diploma 2 -->
-                    <div
-                        class="group bg-surface-container-highest p-8 rounded-xl  duration-500 flex flex-col justify-between min-h-[400px]">
-                        <div
-                            class="w-16 h-16 bg-surface rounded-full flex items-center justify-center text-primary-container group-hover:text-white transition-colors">
-                            <span class="material-symbols-outlined text-3xl">sports_esports</span>
+                    <div class="diploma-card">
+                        <div class="diploma-img-wrap">
+                            <img class="diploma-img" data-alt="close-up of a high-end music production studio console with glowing red and orange lights in a dark room" src="film-making.png" />
                         </div>
-                        <div>
-                            <h3 class="text-2xl font-headline font-bold mb-2 group-hover:text-on-primary-container">Game
-                                Design</h3>
-                            <p
-                                class="text-on-surface-variant group-hover:text-white/80 font-body text-sm leading-relaxed">
-                                Build immersive worlds using Unreal Engine and Unity frameworks.</p>
+                        <div class="diploma-info">
+                            <h3 class="font-headline font-bold">Digital Filmmaking</h3>
                         </div>
                     </div>
-                    <!-- Diploma 3 -->
-                    <div
-                        class="group bg-surface-container-highest p-8 rounded-xl duration-500 flex flex-col justify-between min-h-[400px]">
-                        <div
-                            class="w-16 h-16 bg-surface rounded-full flex items-center justify-center text-primary-container group-hover:text-white transition-colors">
-                            <span class="material-symbols-outlined text-3xl">photo_camera</span>
+                    <div class="diploma-card">
+                        <div class="diploma-img-wrap">
+                            <img class="diploma-img" data-alt="close-up of a high-end music production studio console with glowing red and orange lights in a dark room" src="media-da.JPG" />
                         </div>
-                        <div>
-                            <h3 class="text-2xl font-headline font-bold mb-2 group-hover:text-on-primary-container">
-                                Photography</h3>
-                            <p
-                                class="text-on-surface-variant group-hover:text-white/80 font-body text-sm leading-relaxed">
-                                Conceptualize and execute high-end commercial and editorial shoots.</p>
+                        <div class="diploma-info">
+                            <h3 class="font-headline font-bold">Digital Media</h3>
                         </div>
                     </div>
-                    <!-- Diploma 4 -->
-                    <div
-                        class="group bg-surface-container-highest p-8 rounded-xl  duration-500 flex flex-col justify-between min-h-[400px]">
-                        <div
-                            class="w-16 h-16 bg-surface rounded-full flex items-center justify-center text-primary-container group-hover:text-white transition-colors">
-                            <span class="material-symbols-outlined text-3xl">music_note</span>
+                    <div class="diploma-card">
+                        <div class="diploma-img-wrap">
+                            <img class="diploma-img" data-alt="close-up of a high-end music production studio console with glowing red and orange lights in a dark room" src="animation.png" />
                         </div>
-                        <div>
-                            <h3 class="text-2xl font-headline font-bold mb-2 group-hover:text-on-primary-container">
-                                Songwriting</h3>
-                            <p
-                                class="text-on-surface-variant group-hover:text-white/80 font-body text-sm leading-relaxed">
-                                Develop your unique voice and professional composition skills.</p>
+                        <div class="diploma-info">
+                            <h3 class="font-headline font-bold">Visual Effects Animation</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
-
-
-        <!-- CTA Section -->
-        <section class="py-24 md:py-40 bg-surface relative overflow-hidden">
-            <div class="absolute -right-20 top-0 w-96 h-96 bg-primary-container/20 rounded-full blur-[120px]"></div>
-            <div class="container mx-auto px-8 relative z-10">
-                <div
-                    class="max-w-5xl mx-auto bg-surface-container-lowest border border-outline-variant/10 p-12 md:p-24 rounded-3xl text-center">
-                    <h2 class="text-4xl md:text-7xl font-headline font-black mb-8 tracking-tighter uppercase italic">
-                        Ready to redefine <br /> the Vanguard?</h2>
-                    <p class="text-xl text-on-surface-variant mb-12 max-w-2xl mx-auto">Book your personal consultation
-                        with our academic advisors to map out your creative future.</p>
-                    <a
-                        class="bg-primary-container text-on-primary-container px-12 py-6 rounded-full font-headline font-bold uppercase tracking-[0.2em] text-lg hover:scale-105 transition-transform shadow-[0_20px_50px_rgba(227,27,35,0.3)]">
-                        Book Now
-                    </a>
+        <section class="cta-section">
+            <div class="cta-glow"></div>
+            <div class="container cta-content">
+                <div class="cta-box">
+                    <h2 class="font-headline font-black tracking-tighter">YOUR CREATIVE CAREER BEGINS NOW</h2>
+                    <p>Book your consultation with our academic advisors to map out your creative future.</p>
+                    <a href="#" class="btn-primary">Book Now</a>
                 </div>
             </div>
         </section>
+
+        <footer style="margin: 20px;">
+            <div style="background-color: #000000; padding: 20px;">
+                <div class="container" style="display: flex; justify-content:space-between ;" >
+                    <div >
+                <h4 style="padding: 7px;">Get in Touch
+            </h4>
+            <h4 style="padding: 7px;">
+                06 4000 707
+            </h4>
+            <h4 style="padding: 7px;">
+                info@saejordan.com
+
+            </h4>
+            </div>
+            <div style="max-width: 20%; padding: 20px;" >
+                <img src="Icons (1).png" alt="">
+            </div>
+            </div>
+            </div>
+        </footer>
     </main>
-
 </body>
-
 </html>
