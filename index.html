@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SAE Jordan</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
-    
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Manrope:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
     <style>
         /* --- Custom Theme Variables --- */
         :root {
             --bg-color: #131313;
-            --surface-color: #000000;
+            --surface-color: #292929;
             --surface-low: #1a1a1a;
             --surface-highest: #353535;
-            --primary-accent: #e31b23;
-            --primary-text: #fff9f8;
-            --text-muted: #e7bdb8;
-            
-            --font-headline: 'Epilogue', sans-serif;
-            --font-body: 'Manrope', sans-serif;
+            --primary-accent: #ee2737;
+            --primary-text: #ffffff;
+            --text-muted: #fff;
+
+            --font-headline: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-body: 'Helvetica Neue LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
         /* --- Global Overrides --- */
@@ -35,10 +39,16 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5, h6, .font-headline {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-headline {
             font-family: var(--font-headline);
         }
-        
+
         .text-primary-custom {
             color: var(--primary-accent) !important;
         }
@@ -53,15 +63,18 @@
             background-color: transparent;
             transition: all 0.4s ease;
             padding: 1.5rem 0;
+            
         }
+
         .glass-nav.scrolled {
             background-color: rgba(19, 19, 19, 0.9);
             backdrop-filter: blur(12px);
             padding: 1rem 0;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
+
         .navbar-brand {
-            color: #e2e2e2 !important;
+            color: #ffffff !important;
             font-weight: 900;
             letter-spacing: -1px;
             font-size: 1.5rem;
@@ -73,27 +86,32 @@
             position: relative;
             background-color: var(--bg-color);
         }
+
         .hero-bg-wrapper {
             position: absolute;
             inset: 0;
             z-index: 0;
             opacity: 0.4;
         }
+
         .hero-gradient {
             position: absolute;
             inset: 0;
             background: linear-gradient(to right, var(--bg-color), transparent, var(--bg-color));
             z-index: 1;
         }
+
         .hero-bg-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
         .hero-content {
             position: relative;
             z-index: 2;
         }
+
         .hero-title {
             font-size: clamp(3.5rem, 8vw, 6rem);
             letter-spacing: -0.05em;
@@ -110,21 +128,31 @@
             text-decoration: none;
             color: inherit;
         }
+
         .program-card:hover {
             transform: translateY(-8px);
             color: inherit;
         }
+
         .img-zoom-wrap {
             overflow: hidden;
         }
-        .img-zoom-wrap.square { aspect-ratio: 1/1; }
-        .img-zoom-wrap.portrait { aspect-ratio: 4/5; }
+
+        .img-zoom-wrap.square {
+            aspect-ratio: 1/1;
+        }
+
+        .img-zoom-wrap.portrait {
+            aspect-ratio: 4/5;
+        }
+
         .img-zoom {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.7s ease;
         }
+
         .program-card:hover .img-zoom {
             transform: scale(1.05);
         }
@@ -138,18 +166,21 @@
             text-decoration: none;
             color: inherit;
         }
+
         .diploma-card:hover {
             background-color: rgba(227, 27, 35, 0.1);
         }
+
         .circle-img-wrap {
             background-color: var(--surface-color);
-            border-radius: 50%;
+            border-radius: 5%;
             overflow: hidden;
-            aspect-ratio: 1/1;
+            aspect-ratio: 1/1.5;
             display: flex;
             align-items: center;
             justify-content: center;
         }
+
         .diploma-card:hover h3 {
             color: var(--primary-accent);
         }
@@ -159,6 +190,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .cta-glow-blob {
             position: absolute;
             right: -10%;
@@ -170,6 +202,7 @@
             filter: blur(100px);
             z-index: 0;
         }
+
         .cta-box {
             background-color: #0e0e0e;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -177,6 +210,7 @@
             position: relative;
             z-index: 1;
         }
+
         .btn-custom {
             border: 2px solid transparent;
             background-color: transparent;
@@ -186,8 +220,9 @@
             transition: all 0.3s ease;
             border-color: #fff;
         }
+
         .btn-custom:hover {
-            background-color: #e31b23;
+            background-color: var(--primary-accent);
             transform: scale(1.05);
             color: #fff;
         }
@@ -197,25 +232,30 @@
             margin: 0 10px;
             height: auto;
         }
+
         .slick-track {
             display: flex !important;
         }
-        .slick-slide > div {
+
+        .slick-slide>div {
             height: 100%;
         }
+
         .slick-dots {
             bottom: -35px;
         }
+
         .slick-dots li button:before {
             color: #ffffff;
             opacity: 0.3;
             font-size: 10px;
         }
+
         .slick-dots li.slick-active button:before {
             color: var(--primary-accent);
             opacity: 1;
         }
-        
+
         /* Slider Navigation Arrows */
         .slick-custom-arrow {
             position: absolute;
@@ -233,20 +273,24 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
         }
+
         .slick-custom-arrow:hover {
             background-color: #fff;
             color: var(--primary-accent);
         }
+
         .slick-custom-arrow.slick-disabled {
             opacity: 0;
             pointer-events: none;
         }
+
         .slick-prev-custom {
             left: 5px;
         }
+
         .slick-next-custom {
             right: 5px;
         }
@@ -257,27 +301,31 @@
             transform: translateY(40px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
+
         .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
     </style>
 </head>
+
 <body>
 
     <nav class="navbar fixed-top glass-nav" id="mainNav">
-        <div class="container-fluid px-md-5">
-            <a class="navbar-brand font-headline" href="#">Vanguard Arts</a>
+        <div class="container-fluid px-md-5  "  style="width: 300px;">
+            <img src="logo.png" alt="" width="100%" >
         </div>
     </nav>
-    
+
     <main>
         <section class="hero-section d-flex align-items-center">
             <div class="hero-bg-wrapper">
                 <div class="hero-gradient"></div>
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8JJHplF9sz4RxryVL6Znj7SuiTuBJR5HT5thOl60ra7nbddnaz4Ob-JMoWsKaerJx1fST8Q0tvLF6d-RkBPObz1HnECI_mfTbQJKzqTOjqF-A5lvN4v81iGT-47zGw2oDgTOgt64YPymCsVuoZ7BwbN8pGpugWTtrlB6jpDneyoIOCXg9jAsgh5lTH81tLMEk5Hja9-pfNGD879GoQObOHO8y8HuARmv8NMGG-G13DI-eMt5xU5yuv-AgVGrgqEgDl4W6OF33ZQgb" alt="Studio Background">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8JJHplF9sz4RxryVL6Znj7SuiTuBJR5HT5thOl60ra7nbddnaz4Ob-JMoWsKaerJx1fST8Q0tvLF6d-RkBPObz1HnECI_mfTbQJKzqTOjqF-A5lvN4v81iGT-47zGw2oDgTOgt64YPymCsVuoZ7BwbN8pGpugWTtrlB6jpDneyoIOCXg9jAsgh5lTH81tLMEk5Hja9-pfNGD879GoQObOHO8y8HuARmv8NMGG-G13DI-eMt5xU5yuv-AgVGrgqEgDl4W6OF33ZQgb"
+                    alt="Studio Background">
             </div>
-            
+
             <div class="container hero-content px-4">
                 <div class="row fade-up">
                     <div class="col-lg-8 col-xl-7">
@@ -285,21 +333,24 @@
                             <span class="text-primary-custom">MASTER</span><br>YOUR CREATIVITY
                         </h1>
                         <p class="fs-4 text-muted mb-5" style="color: var(--text-muted) !important;">
-                            Master the craft of cinematography, sound design, and digital media at the world's leading creative institute. Your legacy begins here.
+                            Master the craft of cinematography, sound design, and digital media at the world's leading
+                            creative institute. Your legacy begins here.
                         </p>
                     </div>
                 </div>
             </div>
-            
+
             <div class="position-absolute bottom-0 start-50 translate-middle-x mb-5 fade-up">
-                <div style="width: 1px; height: 80px; background: linear-gradient(to bottom, var(--primary-accent), transparent);"></div>
+                <div
+                    style="width: 1px; height: 80px; background: linear-gradient(to bottom, var(--primary-accent), transparent);">
+                </div>
             </div>
         </section>
 
         <section class="py-5 py-lg-5" style="background-color: var(--surface-color);">
             <div class="container px-4 py-5 position-relative">
                 <h2 class="display-5 fw-black text-uppercase mb-5 pb-3 fade-up">Bachelor's Programs</h2>
-                
+
                 <div class="row g-0 g-md-5 mobile-slick">
                     <div class="col-md-7 fade-up">
                         <a href="#" class="program-card h-100">
@@ -311,7 +362,7 @@
                             </div>
                         </a>
                     </div>
-                    
+
                     <div class="col-md-5 mt-md-5 pt-md-5 fade-up" style="transition-delay: 0.2s;">
                         <a href="#" class="program-card h-100">
                             <div class="img-zoom-wrap portrait">
@@ -329,12 +380,13 @@
         <section class="py-5 py-lg-5" style="background-color: var(--bg-color);">
             <div class="container px-4 py-5 text-center position-relative">
                 <h2 class="display-4 fw-black text-uppercase mb-5 pb-4 fade-up">Diploma Programs</h2>
-                
+
                 <div class="row g-0 g-md-4 text-start mobile-slick">
                     <div class="col-sm-6 col-lg-3 fade-up" style="transition-delay: 0.1s;">
                         <a href="#" class="diploma-card d-flex flex-column p-4 h-100">
                             <div class="circle-img-wrap mb-4">
-                                <img class="img-zoom w-100 h-100 object-fit-cover" src="audio.png" alt="Audio Production" />
+                                <img class="img-zoom w-100 h-100 object-fit-cover" src="audio.png"
+                                    alt="Audio Production" />
                             </div>
                             <div class="mt-auto">
                                 <h3 class="h4 fw-bold mb-0" style="transition: color 0.3s;">Audio Production</h3>
@@ -344,7 +396,8 @@
                     <div class="col-sm-6 col-lg-3 fade-up" style="transition-delay: 0.2s;">
                         <a href="#" class="diploma-card d-flex flex-column p-4 h-100">
                             <div class="circle-img-wrap mb-4">
-                                <img class="img-zoom w-100 h-100 object-fit-cover" src="film-making.png" alt="Digital Filmmaking" />
+                                <img class="img-zoom w-100 h-100 object-fit-cover" src="film-making.png"
+                                    alt="Digital Filmmaking" />
                             </div>
                             <div class="mt-auto">
                                 <h3 class="h4 fw-bold mb-0" style="transition: color 0.3s;">Digital Filmmaking</h3>
@@ -354,7 +407,8 @@
                     <div class="col-sm-6 col-lg-3 fade-up" style="transition-delay: 0.3s;">
                         <a href="#" class="diploma-card d-flex flex-column p-4 h-100">
                             <div class="circle-img-wrap mb-4">
-                                <img class="img-zoom w-100 h-100 object-fit-cover" src="media-da.JPG" alt="Digital Media" />
+                                <img class="img-zoom w-100 h-100 object-fit-cover" src="media-da.JPG"
+                                    alt="Digital Media" />
                             </div>
                             <div class="mt-auto">
                                 <h3 class="h4 fw-bold mb-0" style="transition: color 0.3s;">Digital Media</h3>
@@ -364,10 +418,12 @@
                     <div class="col-sm-6 col-lg-3 fade-up" style="transition-delay: 0.4s;">
                         <a href="#" class="diploma-card d-flex flex-column p-4 h-100">
                             <div class="circle-img-wrap mb-4">
-                                <img class="img-zoom w-100 h-100 object-fit-cover" src="animation.png" alt="VFX Animation" />
+                                <img class="img-zoom w-100 h-100 object-fit-cover" src="animation.png" style="object-position: -80px;"
+                                    alt="VFX Animation" />
                             </div>
                             <div class="mt-auto">
-                                <h3 class="h4 fw-bold mb-0" style="transition: color 0.3s;">Visual Effects Animation</h3>
+                                <h3 class="h4 fw-bold mb-0" style="transition: color 0.3s;">Visual Effects Animation
+                                </h3>
                             </div>
                         </a>
                     </div>
@@ -380,7 +436,8 @@
             <div class="container px-4 py-5 fade-up">
                 <div class="cta-box p-5 text-center p-md-5 my-5">
                     <div class="py-5 max-w-50 mx-auto">
-                        <h2 class="display-3 fw-black text-uppercase fst-italic mb-4">YOUR CREATIVE CAREER BEGINS NOW</h2>
+                        <h2 class="display-3 fw-black text-uppercase  mb-4">YOUR CREATIVE CAREER BEGINS NOW
+                        </h2>
                         <p class="fs-4 mb-5 mx-auto" style="color: var(--text-muted); max-width: 600px;">
                             Book your consultation with our academic advisors to map out your creative future.
                         </p>
@@ -402,23 +459,23 @@
                     <p class="mb-0 text-primary-custom">info@saejordan.com</p>
                 </div>
                 <div>
-                    <img src="Icons (1).png" alt="Icons" class="img-fluid" style="max-height: 40px;">
+                    <img src="Icons (1).png" alt="Icons" class="img-fluid" style="max-height: 60px;">
                 </div>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.css"></script>
-    
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    
+
     <script>
-        $(document).ready(function() {
-            
+        $(document).ready(function () {
+
             // 1. Navbar transparent-to-solid transition on scroll
-            $(window).scroll(function() {
+            $(window).scroll(function () {
                 if ($(this).scrollTop() > 50) {
                     $('#mainNav').addClass('scrolled');
                 } else {
@@ -429,10 +486,10 @@
 
             // 2. Element Fade-In Animation on Scroll
             function checkFade() {
-                $('.fade-up').each(function() {
+                $('.fade-up').each(function () {
                     var elementTop = $(this).offset().top;
                     var windowBottom = $(window).scrollTop() + $(window).height();
-                    
+
                     if (windowBottom > elementTop + 50) {
                         $(this).addClass('visible');
                     }
@@ -440,14 +497,14 @@
             }
             $(window).on('scroll resize', checkFade);
             checkFade();
-            
+
             // 3. jQuery Mobile Slider Initialization with Arrows
             function initMobileSlider() {
-                var isMobile = $(window).width() < 768; 
-                
-                $('.mobile-slick').each(function() {
+                var isMobile = $(window).width() < 768;
+
+                $('.mobile-slick').each(function () {
                     var $slider = $(this);
-                    
+
                     if (isMobile && !$slider.hasClass('slick-initialized')) {
                         // Initialize Slick on mobile
                         $slider.slick({
@@ -459,7 +516,7 @@
                             dots: true,
                             infinite: false,
                             centerMode: true,
-                            centerPadding: '20px', 
+                            centerPadding: '20px',
                             mobileFirst: true
                         });
                     } else if (!isMobile && $slider.hasClass('slick-initialized')) {
@@ -468,12 +525,13 @@
                     }
                 });
             }
-            
+
             // Run on load and on resize
             initMobileSlider();
             $(window).on('resize', initMobileSlider);
-            
+
         });
     </script>
 </body>
+
 </html>
