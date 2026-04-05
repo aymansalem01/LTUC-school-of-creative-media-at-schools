@@ -1,521 +1,479 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>LTUC school of creative media at Schools</title>
-    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Manrope:wght@400;500;600&family=Space+Grotesk:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAE Jordan</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
     <style>
-        /* --- CSS Variables (Extracted from Tailwind Config) --- */
+        /* --- Custom Theme Variables --- */
         :root {
-            --background: #131313;
-            --surface: #000000;
-            --surface-container-lowest: #0e0e0e;
-            --surface-container-low: #8F9092; 
-            --surface-container-highest: #353535;
-            --surface-variant: #353535;
-            --on-surface-variant: #e7bdb8;
-            --primary-container: #e31b23;
-            --on-primary-container: #fff9f8;
-            --outline-variant-10: rgba(93, 63, 60, 0.1); /* outline-variant at 10% opacity */
+            --bg-color: #131313;
+            --surface-color: #000000;
+            --surface-low: #1a1a1a;
+            --surface-highest: #353535;
+            --primary-accent: #e31b23;
+            --primary-text: #fff9f8;
+            --text-muted: #e7bdb8;
             
             --font-headline: 'Epilogue', sans-serif;
             --font-body: 'Manrope', sans-serif;
         }
 
-        /* --- Global Reset & Base Styles --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* --- Global Overrides --- */
         body {
-            background-color: var(--background);
+            background-color: var(--bg-color);
             color: #e2e2e2;
             font-family: var(--font-body);
             overflow-x: hidden;
-            line-height: 1.5;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-headline {
+            font-family: var(--font-headline);
+        }
+        
+        .text-primary-custom {
+            color: var(--primary-accent) !important;
         }
 
         ::selection {
-            background-color: var(--primary-container);
-            color: var(--on-primary-container);
+            background-color: var(--primary-accent);
+            color: var(--primary-text);
         }
 
-        img {
-            max-width: 100%;
-            display: block;
+        /* --- Custom Navbar --- */
+        .glass-nav {
+            background-color: transparent;
+            transition: all 0.4s ease;
+            padding: 1.5rem 0;
         }
-
-        a {
-            text-decoration: none;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1536px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* --- Typography --- */
-        .text-primary-container { color: var(--primary-container); }
-        .font-headline { font-family: var(--font-headline); }
-        .font-black { font-weight: 900; }
-        .font-bold { font-weight: 700; }
-        .tracking-tighter { letter-spacing: -0.05em; }
-        .tracking-tight { letter-spacing: -0.025em; }
-        
-        /* --- Navigation --- */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 50;
-            background-color: rgba(19, 19, 19, 0.6);
+        .glass-nav.scrolled {
+            background-color: rgba(19, 19, 19, 0.9);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
-
-        .navbar-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            max-width: 1536px;
-            margin: 0 auto;
-        }
-
         .navbar-brand {
+            color: #e2e2e2 !important;
+            font-weight: 900;
+            letter-spacing: -1px;
             font-size: 1.5rem;
-            color: #e2e2e2;
         }
 
         /* --- Hero Section --- */
-        .hero {
-            position: relative;
+        .hero-section {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 5rem;
-            overflow: hidden;
-            background-color: var(--background);
+            position: relative;
+            background-color: var(--bg-color);
         }
-
-        .hero-bg {
+        .hero-bg-wrapper {
             position: absolute;
             inset: 0;
             z-index: 0;
             opacity: 0.4;
         }
-
         .hero-gradient {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, var(--background), transparent, var(--background));
-            z-index: 10;
+            background: linear-gradient(to right, var(--bg-color), transparent, var(--bg-color));
+            z-index: 1;
         }
-
-        .hero-img {
+        .hero-bg-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .hero-content {
             position: relative;
-            z-index: 10;
-            max-width: 56rem;
-            margin-top: 5rem;
+            z-index: 2;
         }
-
         .hero-title {
-            font-size: 3.75rem;
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            letter-spacing: -0.05em;
             line-height: 1;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
         }
 
-        .hero-desc {
-            font-size: 1.25rem;
-            color: var(--on-surface-variant);
-            max-width: 42rem;
-            margin-bottom: 2.5rem;
-            line-height: 1.625;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2.5rem;
-            left: 50%;
-            
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 5rem;
-            
-        }
-
-        /* --- Bachelor's Programs Section --- */
-        .bachelors-section {
-            padding: 6rem 0;
-            background-color: var(--surface);
-        }
-
-        .section-header {
-            max-width: 42rem;
-            margin-bottom: 5rem;
-        }
-
-        .section-title {
-            font-size: 2.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .bachelors-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
+        /* --- Image Hover Cards --- */
         .program-card {
-            position: relative;
-            overflow: hidden;
+            background-color: var(--surface-low);
             border-radius: 0.75rem;
-            background-color: var(--surface-container-low);
+            overflow: hidden;
             transition: transform 0.5s ease;
+            display: block;
+            text-decoration: none;
+            color: inherit;
         }
-
         .program-card:hover {
-            transform: translateY(-0.5rem);
+            transform: translateY(-8px);
+            color: inherit;
         }
-
-        .program-img-wrapper {
+        .img-zoom-wrap {
             overflow: hidden;
         }
-
-        .program-img-wrapper.square { aspect-ratio: 1 / 1; }
-        .program-img-wrapper.portrait { aspect-ratio: 4 / 5; }
-
-        .program-img {
+        .img-zoom-wrap.square { aspect-ratio: 1/1; }
+        .img-zoom-wrap.portrait { aspect-ratio: 4/5; }
+        .img-zoom {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.7s ease, filter 0.7s ease;
+            transition: transform 0.7s ease;
         }
-
-        .program-card:hover .program-img {
+        .program-card:hover .img-zoom {
             transform: scale(1.05);
         }
 
-        .program-info {
-            padding: 2.5rem;
-        }
-
-        .program-info h3 {
-            font-size: 1.875rem;
-            margin-bottom: 1rem;
-        }
-
-        /* --- Diploma Programs Section --- */
-        .diplomas-section {
-            padding: 6rem 0;
-            background-color: var(--surface-container-low);
-        }
-
-        .diplomas-title-wrapper {
-            margin-bottom: 5rem;
-            text-align: center;
-        }
-
-        .diplomas-title {
-            font-size: 2.25rem;
-            margin-top: 1rem;
-            text-transform: uppercase;
-        }
-
-        .diplomas-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
+        /* --- Diploma Cards --- */
         .diploma-card {
-            background-color: var(--surface-container-highest);
+            background-color: var(--surface-highest);
             border-radius: 0.75rem;
-            transition: all 0.5s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
             min-height: 400px;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: inherit;
         }
-
-        .diploma-img-wrap {
-            background-color: var(--surface);
-            
+        .diploma-card:hover {
+            background-color: rgba(227, 27, 35, 0.1);
+        }
+        .circle-img-wrap {
+            background-color: var(--surface-color);
+            border-radius: 50%;
+            overflow: hidden;
+            aspect-ratio: 1/1;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary-container);
-            transition: color 0.3s ease;
-            overflow: hidden;
-            width: 100%;
-            aspect-ratio: 1; /* Keep it perfectly circular/square depending on content */
+        }
+        .diploma-card:hover h3 {
+            color: var(--primary-accent);
         }
 
-        .diploma-card:hover .diploma-img-wrap {
-            color: #ffffff;
-        }
-
-        .diploma-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .diploma-info {
-            padding: 2rem;
-        }
-
-        .diploma-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .diploma-card:hover .diploma-info h3 {
-            color: var(--on-primary-container);
-        }
-
-        /* --- CTA Section --- */
-        .cta-section {
-            padding: 6rem 0;
-            background-color: var(--surface);
+        /* --- CTA Glow Box --- */
+        .cta-glow-container {
             position: relative;
             overflow: hidden;
         }
-
-        .cta-glow {
+        .cta-glow-blob {
             position: absolute;
-            right: -5rem;
+            right: -10%;
             top: 0;
-            width: 24rem;
-            height: 24rem;
-            background-color: rgba(227, 27, 35, 0.2); /* var(--primary-container) with opacity */
+            width: 400px;
+            height: 400px;
+            background-color: rgba(227, 27, 35, 0.2);
             border-radius: 50%;
-            filter: blur(120px);
+            filter: blur(100px);
+            z-index: 0;
         }
-
-        .cta-content {
-            position: relative;
-            z-index: 10;
-        }
-
         .cta-box {
-            max-width: 64rem;
-            margin: 0 auto;
-            background-color: var(--surface-container-lowest);
-            border: 1px solid var(--outline-variant-10);
-            padding: 3rem;
+            background-color: #0e0e0e;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 1.5rem;
-            text-align: center;
+            position: relative;
+            z-index: 1;
         }
-
-        .cta-box h2 {
-            font-size: 2.25rem;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            font-style: italic;
-        }
-
-        .cta-box p {
-            font-size: 1.25rem;
-            color: var(--on-surface-variant);
-            margin-bottom: 3rem;
-            max-width: 42rem;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            color: var(--on-primary-container);
-            padding: 1.5rem 3rem;
-            border-radius: 9999px;
+        .btn-custom {
+            border: 2px solid transparent;
+            background-color: transparent;
+            color: var(--primary-text);
             font-family: var(--font-headline);
-            font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 0.2em;
-            font-size: 1.125rem;
-            transition: transform 0.3s ease;
-            border: 1px solid transparent;
-            border-color: #ffffff;
+            transition: all 0.3s ease;
+            border-color: #fff;
         }
-
-        .btn-primary:hover {
-            transform: scale(1.05);
+        .btn-custom:hover {
             background-color: #e31b23;
+            transform: scale(1.05);
+            color: #fff;
         }
 
-        /* --- Media Queries for Responsiveness --- */
-        @media (min-width: 768px) {
-            .hero-content { margin-top: 0; }
-            .hero-title { font-size: 6rem; }
-            .hero-desc { font-size: 1.5rem; }
-            
-            .bachelors-section { padding: 8rem 0; }
-            .section-title { font-size: 3rem; }
-            
-            .bachelors-grid { grid-template-columns: repeat(12, 1fr); }
-            .program-1 { grid-column: span 7; }
-            .program-2 { grid-column: span 5; margin-top: 6rem; }
-            
-            .diplomas-section { padding: 8rem 0; }
-            .diplomas-title { font-size: 3.75rem; }
-            .diplomas-grid { grid-template-columns: repeat(4, 1fr); }
+        /* --- Custom Slick Slider Styling --- */
+        .slick-slide {
+            margin: 0 10px;
+            height: auto;
+        }
+        .slick-track {
+            display: flex !important;
+        }
+        .slick-slide > div {
+            height: 100%;
+        }
+        .slick-dots {
+            bottom: -35px;
+        }
+        .slick-dots li button:before {
+            color: #ffffff;
+            opacity: 0.3;
+            font-size: 10px;
+        }
+        .slick-dots li.slick-active button:before {
+            color: var(--primary-accent);
+            opacity: 1;
+        }
+        
+        /* Slider Navigation Arrows */
+        .slick-custom-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background-color: var(--primary-accent);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+        .slick-custom-arrow:hover {
+            background-color: #fff;
+            color: var(--primary-accent);
+        }
+        .slick-custom-arrow.slick-disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .slick-prev-custom {
+            left: 5px;
+        }
+        .slick-next-custom {
+            right: 5px;
+        }
 
-            .cta-section { padding: 10rem 0; }
-            .cta-box { padding: 6rem; }
-            .cta-box h2 { font-size: 4.5rem; }
+        /* --- jQuery Animation Classes --- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-
 <body>
-    <nav class="navbar">
-        <div class="navbar-content">
-            <div class="navbar-brand font-black tracking-tighter font-headline">Vanguard Arts</div>
+
+    <nav class="navbar fixed-top glass-nav" id="mainNav">
+        <div class="container-fluid px-md-5">
+            <a class="navbar-brand font-headline" href="#">Vanguard Arts</a>
         </div>
     </nav>
     
     <main>
-        <section class="hero">
-            <div class="hero-bg">
+        <section class="hero-section d-flex align-items-center">
+            <div class="hero-bg-wrapper">
                 <div class="hero-gradient"></div>
-                <img class="hero-img" data-alt="cinematic close-up of a professional film camera in a dark studio setting with red rim lighting and atmosphere smoke" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8JJHplF9sz4RxryVL6Znj7SuiTuBJR5HT5thOl60ra7nbddnaz4Ob-JMoWsKaerJx1fST8Q0tvLF6d-RkBPObz1HnECI_mfTbQJKzqTOjqF-A5lvN4v81iGT-47zGw2oDgTOgt64YPymCsVuoZ7BwbN8pGpugWTtrlB6jpDneyoIOCXg9jAsgh5lTH81tLMEk5Hja9-pfNGD879GoQObOHO8y8HuARmv8NMGG-G13DI-eMt5xU5yuv-AgVGrgqEgDl4W6OF33ZQgb" />
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8JJHplF9sz4RxryVL6Znj7SuiTuBJR5HT5thOl60ra7nbddnaz4Ob-JMoWsKaerJx1fST8Q0tvLF6d-RkBPObz1HnECI_mfTbQJKzqTOjqF-A5lvN4v81iGT-47zGw2oDgTOgt64YPymCsVuoZ7BwbN8pGpugWTtrlB6jpDneyoIOCXg9jAsgh5lTH81tLMEk5Hja9-pfNGD879GoQObOHO8y8HuARmv8NMGG-G13DI-eMt5xU5yuv-AgVGrgqEgDl4W6OF33ZQgb" alt="Studio Background">
             </div>
-            <div class="container hero-content">
-                <div>
-                    <h1 class="hero-title font-headline font-black tracking-tighter">
-                        <span class="text-primary-container">MASTER<br>YOUR CREATIVITY</span>
-                    </h1>
-                    <p class="hero-desc">
-                        Master the craft of cinematography, sound design, and digital media at the world's leading
-                        creative institute. Your legacy begins here.
-                    </p>
-                </div>
-            </div>
-            <div class="scroll-indicator">
-                <div class="scroll-line"></div>
-            </div>
-        </section>
-
-        <section class="bachelors-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title font-headline font-black tracking-tight uppercase">Bachelor's Programs</h2>
-                </div>
-                <div class="bachelors-grid">
-                    <div class="program-card program-1">
-                        <div class="program-img-wrapper square">
-                            <img class="program-img" data-alt="photograph of a photographer capturing an urban scene with dramatic lighting" src="film-making.png" />
-                        </div>
-                        <div class="program-info">
-                            <h3 class="font-headline font-bold">Bachelor of Digital Filmmaking</h3>
-                        </div>
-                    </div>
-                    <div class="program-card program-2">
-                        <div class="program-img-wrapper portrait">
-                            <img class="program-img" data-alt="close-up of a high-end music production studio console with glowing red and orange lights in a dark room" src="media-ba.JPG" />
-                        </div>
-                        <div class="program-info">
-                            <h3 class="font-headline font-bold">Bachelor of Digital Media Design</h3>
-                        </div>
+            
+            <div class="container hero-content px-4">
+                <div class="row fade-up">
+                    <div class="col-lg-8 col-xl-7">
+                        <h1 class="hero-title fw-black text-uppercase mb-4">
+                            <span class="text-primary-custom">MASTER</span><br>YOUR CREATIVITY
+                        </h1>
+                        <p class="fs-4 text-muted mb-5" style="color: var(--text-muted) !important;">
+                            Master the craft of cinematography, sound design, and digital media at the world's leading creative institute. Your legacy begins here.
+                        </p>
                     </div>
                 </div>
+            </div>
+            
+            <div class="position-absolute bottom-0 start-50 translate-middle-x mb-5 fade-up">
+                <div style="width: 1px; height: 80px; background: linear-gradient(to bottom, var(--primary-accent), transparent);"></div>
             </div>
         </section>
 
-        <section class="diplomas-section">
-            <div class="container">
-                <div class="diplomas-title-wrapper">
-                    <h2 class="diplomas-title font-headline font-black tracking-tighter">DIPLOMA PROGRAMS</h2>
-                </div>
-                <div class="diplomas-grid">
-                    <div class="diploma-card">
-                        <div class="diploma-img-wrap">
-                            <img class="diploma-img" data-alt="close-up of a high-end music production studio console with glowing red and orange lights in a dark room" src="audio.png" />
-                        </div>
-                        <div class="diploma-info">
-                            <h3 class="font-headline font-bold">Audio Production</h3>
-                        </div>
+        <section class="py-5 py-lg-5" style="background-color: var(--surface-color);">
+            <div class="container px-4 py-5 position-relative">
+                <h2 class="display-5 fw-black text-uppercase mb-5 pb-3 fade-up">Bachelor's Programs</h2>
+                
+                <div class="row g-0 g-md-5 mobile-slick">
+                    <div class="col-md-7 fade-up">
+                        <a href="#" class="program-card h-100">
+                            <div class="img-zoom-wrap square">
+                                <img class="img-zoom" src="film-making.png" alt="Filmmaking" />
+                            </div>
+                            <div class="p-4 p-lg-5">
+                                <h3 class="fw-bold mb-0">Bachelor of Digital Filmmaking</h3>
+                            </div>
+                        </a>
                     </div>
-                    <div class="diploma-card">
-                        <div class="diploma-img-wrap">
-                            <img class="diploma-img" data-alt="close-up of a high-end music production studio console with glowing red and orange lights in a dark room" src="film-making.png" />
-                        </div>
-                        <div class="diploma-info">
-                            <h3 class="font-headline font-bold">Digital Filmmaking</h3>
-                        </div>
-                    </div>
-                    <div class="diploma-card">
-                        <div class="diploma-img-wrap">
-                            <img class="diploma-img" data-alt="close-up of a high-end music production studio console with glowing red and orange lights in a dark room" src="media-da.JPG" />
-                        </div>
-                        <div class="diploma-info">
-                            <h3 class="font-headline font-bold">Digital Media</h3>
-                        </div>
-                    </div>
-                    <div class="diploma-card">
-                        <div class="diploma-img-wrap">
-                            <img class="diploma-img" data-alt="close-up of a high-end music production studio console with glowing red and orange lights in a dark room" src="animation.png" />
-                        </div>
-                        <div class="diploma-info">
-                            <h3 class="font-headline font-bold">Visual Effects Animation</h3>
-                        </div>
+                    
+                    <div class="col-md-5 mt-md-5 pt-md-5 fade-up" style="transition-delay: 0.2s;">
+                        <a href="#" class="program-card h-100">
+                            <div class="img-zoom-wrap portrait">
+                                <img class="img-zoom" src="media-ba.JPG" alt="Media Design" />
+                            </div>
+                            <div class="p-4 p-lg-5">
+                                <h3 class="fw-bold mb-0">Bachelor of Digital Media Design</h3>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="cta-section">
-            <div class="cta-glow"></div>
-            <div class="container cta-content">
-                <div class="cta-box">
-                    <h2 class="font-headline font-black tracking-tighter">YOUR CREATIVE CAREER BEGINS NOW</h2>
-                    <p>Book your consultation with our academic advisors to map out your creative future.</p>
-                    <a href="#" class="btn-primary">Book Now</a>
+        <section class="py-5 py-lg-5" style="background-color: var(--bg-color);">
+            <div class="container px-4 py-5 text-center position-relative">
+                <h2 class="display-4 fw-black text-uppercase mb-5 pb-4 fade-up">Diploma Programs</h2>
+                
+                <div class="row g-0 g-md-4 text-start mobile-slick">
+                    <div class="col-sm-6 col-lg-3 fade-up" style="transition-delay: 0.1s;">
+                        <a href="#" class="diploma-card d-flex flex-column p-4 h-100">
+                            <div class="circle-img-wrap mb-4">
+                                <img class="img-zoom w-100 h-100 object-fit-cover" src="audio.png" alt="Audio Production" />
+                            </div>
+                            <div class="mt-auto">
+                                <h3 class="h4 fw-bold mb-0" style="transition: color 0.3s;">Audio Production</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-lg-3 fade-up" style="transition-delay: 0.2s;">
+                        <a href="#" class="diploma-card d-flex flex-column p-4 h-100">
+                            <div class="circle-img-wrap mb-4">
+                                <img class="img-zoom w-100 h-100 object-fit-cover" src="film-making.png" alt="Digital Filmmaking" />
+                            </div>
+                            <div class="mt-auto">
+                                <h3 class="h4 fw-bold mb-0" style="transition: color 0.3s;">Digital Filmmaking</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-lg-3 fade-up" style="transition-delay: 0.3s;">
+                        <a href="#" class="diploma-card d-flex flex-column p-4 h-100">
+                            <div class="circle-img-wrap mb-4">
+                                <img class="img-zoom w-100 h-100 object-fit-cover" src="media-da.JPG" alt="Digital Media" />
+                            </div>
+                            <div class="mt-auto">
+                                <h3 class="h4 fw-bold mb-0" style="transition: color 0.3s;">Digital Media</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-lg-3 fade-up" style="transition-delay: 0.4s;">
+                        <a href="#" class="diploma-card d-flex flex-column p-4 h-100">
+                            <div class="circle-img-wrap mb-4">
+                                <img class="img-zoom w-100 h-100 object-fit-cover" src="animation.png" alt="VFX Animation" />
+                            </div>
+                            <div class="mt-auto">
+                                <h3 class="h4 fw-bold mb-0" style="transition: color 0.3s;">Visual Effects Animation</h3>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <footer >
-            <div style="background-color: #000000; padding: 20px;">
-                <div class="container" style="display: flex; justify-content:space-between ;" >
-                    <div >
-                <h4 style="padding: 7px;">Get in Touch
-            </h4>
-            <h4 style="padding: 7px;">
-                06 4000 707
-            </h4>
-            <h4 style="padding: 7px;">
-                info@saejordan.com
-
-            </h4>
+        <section class="py-5 py-lg-5 cta-glow-container" style="background-color: var(--surface-color);">
+            <div class="cta-glow-blob"></div>
+            <div class="container px-4 py-5 fade-up">
+                <div class="cta-box p-5 text-center p-md-5 my-5">
+                    <div class="py-5 max-w-50 mx-auto">
+                        <h2 class="display-3 fw-black text-uppercase fst-italic mb-4">YOUR CREATIVE CAREER BEGINS NOW</h2>
+                        <p class="fs-4 mb-5 mx-auto" style="color: var(--text-muted); max-width: 600px;">
+                            Book your consultation with our academic advisors to map out your creative future.
+                        </p>
+                        <a href="#" class="btn btn-custom rounded-pill px-5 py-3 text-uppercase fw-bold fs-5">
+                            Book Now
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div style="max-width: 20%; padding: 20px;" >
-                <img src="Icons (1).png" alt="">
-            </div>
-            </div>
-            </div>
-        </footer>
+        </section>
     </main>
+
+    <footer class="py-4" style="background-color: #000000;">
+        <div class="container px-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="text-center text-md-start mb-3 mb-md-0">
+                    <h5 class="fw-bold mb-2">Get in Touch</h5>
+                    <p class="mb-1">06 4000 707</p>
+                    <p class="mb-0 text-primary-custom">info@saejordan.com</p>
+                </div>
+                <div>
+                    <img src="Icons (1).png" alt="Icons" class="img-fluid" style="max-height: 40px;">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.css"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            
+            // 1. Navbar transparent-to-solid transition on scroll
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('#mainNav').addClass('scrolled');
+                } else {
+                    $('#mainNav').removeClass('scrolled');
+                }
+            });
+            $(window).trigger('scroll');
+
+            // 2. Element Fade-In Animation on Scroll
+            function checkFade() {
+                $('.fade-up').each(function() {
+                    var elementTop = $(this).offset().top;
+                    var windowBottom = $(window).scrollTop() + $(window).height();
+                    
+                    if (windowBottom > elementTop + 50) {
+                        $(this).addClass('visible');
+                    }
+                });
+            }
+            $(window).on('scroll resize', checkFade);
+            checkFade();
+            
+            // 3. jQuery Mobile Slider Initialization with Arrows
+            function initMobileSlider() {
+                var isMobile = $(window).width() < 768; 
+                
+                $('.mobile-slick').each(function() {
+                    var $slider = $(this);
+                    
+                    if (isMobile && !$slider.hasClass('slick-initialized')) {
+                        // Initialize Slick on mobile
+                        $slider.slick({
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: true, // Arrows are now enabled
+                            prevArrow: '<button type="button" class="slick-custom-arrow slick-prev-custom">&#10094;</button>',
+                            nextArrow: '<button type="button" class="slick-custom-arrow slick-next-custom">&#10095;</button>',
+                            dots: true,
+                            infinite: false,
+                            centerMode: true,
+                            centerPadding: '20px', 
+                            mobileFirst: true
+                        });
+                    } else if (!isMobile && $slider.hasClass('slick-initialized')) {
+                        // Destroy Slick on desktop to return to Bootstrap grid
+                        $slider.slick('unslick');
+                    }
+                });
+            }
+            
+            // Run on load and on resize
+            initMobileSlider();
+            $(window).on('resize', initMobileSlider);
+            
+        });
+    </script>
 </body>
 </html>
